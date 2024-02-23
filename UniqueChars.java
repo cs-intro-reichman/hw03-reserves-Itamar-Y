@@ -15,7 +15,7 @@ public class UniqueChars {
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
             
-            if (unique.indexOf(c) == -1) {
+            if (unique.indexOf(c) == -1 || c == 32) {
                 unique += c;
             }
         }
