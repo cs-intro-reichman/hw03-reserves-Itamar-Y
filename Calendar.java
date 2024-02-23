@@ -8,39 +8,30 @@ public class Calendar {
 	static int nDaysInMonth = 31;
 
 	public static void main(String[] args) {
-		int year = Integer.parseInt(args[0]);
-	
-		
-		while (year == year) {
-			advance();
+		int inputYear = Integer.parseInt(args[0]);
 
-		}
-	}
+        while (year != inputYear) {
+            advance();
+			if (year == year) {System.out.println(year);
+        }
+    }
+}
 	
 	private static void advance() {
-	nDaysInMonth = nDaysInMonth(year);
-		for (; year <= 1999; year++) {
+        int nDaysInMonth = nDaysInMonth(year);
 
-                for (dayOfMonth = 1; dayOfMonth <= nDaysInMonth; dayOfMonth++) {
-                    System.out.printf("%d/%d/%d%n", dayOfMonth, month, year);
-                    dayOfWeek++; 
+        for (; month <= 12; month++) {
+            for (dayOfMonth = 1; dayOfMonth <= nDaysInMonth; dayOfMonth++) {
+                System.out.printf("%d/%d/%d - %s%n", dayOfMonth, month, year);
 
-                    if (dayOfWeek == 8) {
-                        dayOfWeek = 1; // Reset dayOfWeek to 1 for a new week
-                    }
-
-                    if (dayOfWeek == 1) {
-                        System.out.printf("%d/%d/%d Sunday%n", dayOfMonth, month, year);
-					}
-					if (dayOfMonth == 1 && dayOfWeek == 1) {
-							
-					}
-                    }}
-                	
-		}	
+                if (dayOfWeek == 1) {
+                    System.out.printf("%d/%d/%d Sunday%n", dayOfMonth, month, year);
+                }
+            }
+        }
+        year++;
+    }
     
-				
-		
 	
 		private static boolean isLeapYear(int year) {
 			boolean isLeapYear = false;
