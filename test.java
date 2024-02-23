@@ -1,7 +1,7 @@
 /**
 * Computes the periodical payment necessary to re-pay a given loan.
 */
-public class LoanCalc {
+public class Test {
 	
 	static double epsilon = 0.001;  // The computation tolerance (estimation error)
 	static int iterationCounter;    // Monitors the efficiency of the calculation
@@ -59,30 +59,56 @@ public class LoanCalc {
 	* the number of periods (n), and epsilon, a tolerance level.
 	*/
 	// Side effect: modifies the class variable iterationCounter.
+    // public static double bisectionSolver(double loan, double rate, int n, double epsilon) {
+    //     iterationCounter = 0;
+    //     double low = 0.0;
+    //     double high = loan * (1 + rate / 12.0);
+    //     double periodicalPayment = (low + high) / 2;
+    //     double endBalance = endBalance(loan, rate, n, periodicalPayment);
+    
+    //     // Check if the end balance changes sign between lo and hi
+    //     if (Math.signum(endBalance(loan, rate, n, low)) == Math.signum(endBalance(loan, rate, n, high))) {
+    //         return -1; // Return -1 to indicate that bisection search failed
+    //     }
+    
+    //     while ((high - low) > epsilon) {
+    //         if (endBalance(loan, rate, n, periodicalPayment) * endBalance(loan, rate, n, high) > 0) {
+    //             high = periodicalPayment;
+    //         } else {
+    //             low = periodicalPayment;
+    //         }
+    
+    //         periodicalPayment = (low + high) / 2;
+    //         endBalance = endBalance(loan, rate, n, periodicalPayment);
+    //         iterationCounter++;
+    //     }
+    
+    //     return periodicalPayment;
+    // }
 
     public static double bisectionSolver(double loan, double rate, int n, double epsilon) {
         iterationCounter = 0;
-        double low = 0.0;
-        double high = loan * (1 + rate / 12.0);
-        double periodicalPayment = (low + high) / 2;
-        double endBalanceLo = endBalance(loan, rate, n, low);
-        double endBalanceHi = endBalance(loan, rate, n, high);
+        double lo = 0.0;
+        double hi = loan * (1 + rate / 12.0);
+        double periodicalPayment = (lo + hi) / 2;
+        double endBalanceLo = endBalance(loan, rate, n, lo);
+        double endBalanceHi = endBalance(loan, rate, n, hi);
     
         // Check if the end balance changes sign between lo and hi
         if (endBalanceLo * endBalanceHi >= 0) {
             return -1; // Return -1 to indicate that bisection search failed
         }
     
-        while ((high - low) > epsilon) {
+        while ((hi - lo) > epsilon) {
             double endBalancePeriodical = endBalance(loan, rate, n, periodicalPayment);
     
             if (endBalancePeriodical * endBalanceHi > 0) {
-                high = periodicalPayment;
+                hi = periodicalPayment;
             } else {
-                low = periodicalPayment;
+                lo = periodicalPayment;
             }
     
-            periodicalPayment = (low + high) / 2;
+            periodicalPayment = (lo + hi) / 2;
             iterationCounter++;
         }
     
