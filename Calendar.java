@@ -7,36 +7,39 @@ public class Calendar {
 	static int dayOfWeek = 2;     // 1.1.1900 was a Monday
 	static int nDaysInMonth = 31;
 
-	public static void main(int[] args) {
-		int year = args[0];
+	public static void main(String[] args) {
+		int year = Integer.parseInt(args[0]);
 	
 		
-		while (year) {
-			
-		}
-	
-	
-	
-	 private static void advance() {
-		for (month = 1; month <= 12; month++) {
-			nDaysInMonth = nDaysInMonth(year);
-			
-			for (dayOfMonth = 1; dayOfMonth <= nDaysInMonth; dayOfMonth++) {
-				System.out.printf("%d/%d/%d%n", dayOfMonth, month, year);
-				dayOfWeek++; 
+		while (year == year) {
+			advance();
 
-				if (dayOfWeek == 8) {
-					dayOfWeek = 1; // Reset dayOfWeek to 1 for a new week
-				}
-
-				if (dayOfWeek == 1) {
-					System.out.printf("%d/%d/%d Sunday%n", dayOfMonth, month, year);
-				}
-			
-			}	
 		}
+	}
+	
+	private static void advance() {
+	nDaysInMonth = nDaysInMonth(year);
+		for (; year <= 1999; year++) {
+
+                for (dayOfMonth = 1; dayOfMonth <= nDaysInMonth; dayOfMonth++) {
+                    System.out.printf("%d/%d/%d%n", dayOfMonth, month, year);
+                    dayOfWeek++; 
+
+                    if (dayOfWeek == 8) {
+                        dayOfWeek = 1; // Reset dayOfWeek to 1 for a new week
+                    }
+
+                    if (dayOfWeek == 1) {
+                        System.out.printf("%d/%d/%d Sunday%n", dayOfMonth, month, year);
+					}
+					if (dayOfMonth == 1 && dayOfWeek == 1) {
+							
+					}
+                    }}
+                	
+		}	
+    
 				
-	 	}
 		
 	
 		private static boolean isLeapYear(int year) {
@@ -52,11 +55,12 @@ public class Calendar {
 		}
 	
 		private static int nDaysInMonth(int year) {
-			int days = 0;
+			int days =0;
+
 	
 			for (int month = 1; month <= 12; month++){
-				
 				switch (month) {
+					
 					case 1: case 3: case 5: case 7: case 8: case 10: case 12:
 					days = 31;
 						break;
@@ -70,6 +74,7 @@ public class Calendar {
 						days = 29;
 					} else {
 						days = 28;
+						break;
 					}
 					default: ;
 						break; 
@@ -78,5 +83,5 @@ public class Calendar {
 			return days;
 		}
 	}
-}
+
 
