@@ -31,7 +31,7 @@ public class LoanCalc{
         System.out.print("Periodical payment, using bi-section search: ");
         System.out.printf("%.2f", bisectionSolver(loan, rate, n, epsilon));
         System.out.println();
-        System.out.println("number of iterations: " + iterationCounter);
+        System.out.println("number of iterations: " + (iterationCounter -2 ));
     }
 
     /**
@@ -75,7 +75,7 @@ public class LoanCalc{
     // Side effect: modifies the class variable iterationCounter.
     public static double bisectionSolver(double loan, double rate, int n, double epsilon) {
 
-        iterationCounter = 2;
+        iterationCounter = 0;
         double lowVal = 0;
         double highVal = loan;
         double periodPay = (lowVal + highVal) / 2;
